@@ -1,0 +1,52 @@
+<div class="row mb-3">
+  <div class="col row">
+    <h2 class="col-12">Filters</h2>
+    <div class="col">
+      <label for="searchTitle" class="form-label">Title:</label>
+      <input
+        id="searchTitle"
+        type="text"
+        class="form-control p-r-0"
+        [(ngModel)]="searchTitle"
+        placeholder="Title"
+        (input)="applyFilters()"
+      />
+    </div>
+    <div class="col px-0">
+      <label for="searchYear" class="form-label">Release Year:</label>
+      <input
+        id="searchYear"
+        type="number"
+        class="form-control"
+        [(ngModel)]="searchYear"
+        placeholder="YYYY"
+        #yearInput
+        (input)="applyFilters()"
+      />
+    </div>
+  </div>
+</div>
+<ul class="list-group">
+  @for (movie of filteredMovies; track $index) {
+
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    <div class="col-md-10 row">
+      <h5 class="col-12">{{ movie.title }}</h5>
+      <div class="col-12 row">
+        <p>
+          Release date : {{ movie.release_date }} Budget :
+          {{ movie.budget | currencyFormat }} Duration:
+          {{ movie.duration | minutesToHours }}
+        </p>
+      </div>
+    </div>
+    <div class="col-md-2 d-flex justify-content-end">
+      <button class="btn btn-dark" [id]="movie.id">
+        <span [routerLink]="[movie.id]">Details</span>
+      </button>
+    </div>
+  </li>
+  } @empty {
+  <li class="list-group-item">No items found</li>
+  }
+</ul>

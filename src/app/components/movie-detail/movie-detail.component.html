@@ -1,0 +1,50 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-12">
+      <button class="btn btn-dark m-3" (click)="goBack()">Return</button>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-md-4 d-flex justify-content-start">
+      <img
+        [src]="movie.poster"
+        alt="{{ movie.title }}"
+        class="img-fluid movie-image"
+      />
+    </div>
+    <div class="col-md-8">
+      <h2>{{ movie.title }}</h2>
+      <p><b>Summary : </b> {{ movie.summary }}</p>
+      <table class="table mt-3">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>Box office</b></td>
+            <td>{{ movie.box_office | currencyFormat }}</td>
+          </tr>
+          <tr>
+            <td><b>Budget</b></td>
+            <td>{{ movie.budget | currencyFormat }}</td>
+          </tr>
+          <tr>
+            <td><b>Duration</b></td>
+            <td>{{ movie.duration | minutesToHours }}</td>
+          </tr>
+          <tr>
+            <td><b>Producers</b></td>
+            <td>{{ movie.producers }}</td>
+          </tr>
+          <tr>
+            <td><b>Cinematographers</b></td>
+            <td>{{ movie.cinematographers }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
