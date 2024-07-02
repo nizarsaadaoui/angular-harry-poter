@@ -5,8 +5,7 @@ import { MovieService } from '../../services/movie.service';
 import { CurrencyFormatPipe } from '../../pipes/currency-format.pipe';
 import { MinutesToHoursPipe } from '../../pipes/minutes-to-hours.pipe';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
-import { ActivatedRoute } from '@angular/router';
+import { RouterLink, ActivatedRoute } from '@angular/router';
 
 describe('MoviesCatalogComponent', () => {
   let component: MoviesCatalogComponent;
@@ -73,45 +72,39 @@ describe('MoviesCatalogComponent', () => {
 
   it('should fetch movies on init', () => {
     expect(mockMovieService.getMovies).toHaveBeenCalled();
-    expect(component.movies.length).toBe(2);
-    expect(component.filteredMovies.length).toBe(2);
+    expect(component.filteredMovies().length).toBe(2);
   });
 
   it('should filter movies by title', () => {
-    component.searchTitle = 'Movie 1';
-    component.applyFilters();
-    expect(component.filteredMovies.length).toBe(1);
-    expect(component.filteredMovies[0].title).toBe('Movie 1');
+    component.searchTitle.set('Movie 1');
+    expect(component.filteredMovies().length).toBe(1);
+    expect(component.filteredMovies()[0].title).toBe('Movie 1');
   });
 
   it('should filter movies by year', () => {
-    component.searchYear = 2023;
-    component.applyFilters();
-    expect(component.filteredMovies.length).toBe(1);
-    expect(component.filteredMovies[0].release_date).toContain('2023');
+    component.searchYear.set(2023);
+    expect(component.filteredMovies().length).toBe(1);
+    expect(component.filteredMovies()[0].release_date.split('-')[0]).toBe('2023');
   });
 
   it('should filter movies by title and year', () => {
-    component.searchTitle = 'Movie';
-    component.searchYear = 2022;
-    component.applyFilters();
-    expect(component.filteredMovies.length).toBe(1);
-    expect(component.filteredMovies[0].title).toBe('Movie 1');
-    expect(component.filteredMovies[0].release_date).toContain('2022');
+    component.searchTitle.set('Movie');
+    component.searchYear.set(2022);
+    expect(component.filteredMovies().length).toBe(1);
+    expect(component.filteredMovies()[0].title).toBe('Movie 1');
+    expect(component.filteredMovies()[0].release_date.split('-')[0]).toBe('2022');
   });
 
   it('should reset filters when both title and year are empty', () => {
-    component.searchTitle = '';
-    component.searchYear = null;
-    component.applyFilters();
-    expect(component.filteredMovies.length).toBe(2);
+    component.searchTitle.set('');
+    component.searchYear.set(null);
+    expect(component.filteredMovies().length).toBe(2);
   });
 
 
   it('should not filter when year < 1000 ', () => {
-    component.searchTitle = '';
-    component.searchYear = 999;
-    component.applyFilters();
-    expect(component.filteredMovies.length).toBe(2);
+    component.searchTitle.set('');
+    component.searchYear.set(999);
+    expect(component.filteredMovies().length).toBe(2);
   });
 });

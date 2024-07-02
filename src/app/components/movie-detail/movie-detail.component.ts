@@ -13,18 +13,7 @@ import { MinutesToHoursPipe } from '../../pipes/minutes-to-hours.pipe';
 })
 export class MovieDetailComponent {
 
-  movie: MovieDetail = {
-    id: '',
-    box_office: '',
-    budget: '',
-    cinematographers: [],
-    duration: 0,
-    poster: '',
-    release_date: '',
-    summary: '',
-    title: '',
-    producers: []
-  };
+  movie: MovieDetail | undefined = undefined
 
   constructor(
     private movieService: MovieService,

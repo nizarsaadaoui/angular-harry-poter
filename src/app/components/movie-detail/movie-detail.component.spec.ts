@@ -13,24 +13,26 @@ describe('MovieDetailComponent', () => {
   let mockMovieService: Partial<MovieService>;
   let mockActivatedRoute: Partial<ActivatedRoute>;
   let router: Router;
+  let movie: MovieDetail = {
+    id: '1',
+    box_office: '1000000',
+    budget: '500000',
+    cinematographers: ['Cinematographer 1'],
+    duration: 120,
+    poster: 'poster.jpg',
+    release_date: '2023-01-01',
+    summary: 'A great movie',
+    title: 'Movie 1',
+    producers: ['Producer 1']
+  }
+
 
 
   beforeEach(async () => {
-    mockMovieService = {
-      getMovieById: jasmine.createSpy('getMovieById').and.returnValue(of({
-        id: '1',
-        box_office: '1000000',
-        budget: '500000',
-        cinematographers: ['Cinematographer 1'],
-        duration: 120,
-        poster: 'poster.jpg',
-        release_date: '2023-01-01',
-        summary: 'A great movie',
-        title: 'Movie 1',
-        producers: ['Producer 1']
-      }))
-    };
 
+    mockMovieService = {
+      getMovieById: jasmine.createSpy('getMovieById').and.returnValue(of(movie))
+    };
 
     mockActivatedRoute = {
       params: of({ movieId: '1' })
@@ -59,23 +61,21 @@ describe('MovieDetailComponent', () => {
 
   it('should fetch movie details on init', () => {
     expect(mockMovieService.getMovieById).toHaveBeenCalledWith('1');
-    expect(component.movie.id).toBe('1');
-    expect(component.movie.box_office).toBe('1000000');
-    expect(component.movie.cinematographers).toContain('Cinematographer 1');
-    expect(component.movie.duration).toBe(120);
-    expect(component.movie.poster).toBe('poster.jpg');
-    expect(component.movie.release_date).toBe('2023-01-01');
-    expect(component.movie.summary).toBe('A great movie');
-    expect(component.movie.title).toBe('Movie 1');
-    expect(component.movie.producers).toContain('Producer 1');
+    expect(component.movie?.id).toBe('1');
+    expect(component.movie?.box_office).toBe('1000000');
+    expect(component.movie?.cinematographers).toContain('Cinematographer 1');
+    expect(component.movie?.duration).toBe(120);
+    expect(component.movie?.poster).toBe('poster.jpg');
+    expect(component.movie?.release_date).toBe('2023-01-01');
+    expect(component.movie?.summary).toBe('A great movie');
+    expect(component.movie?.title).toBe('Movie 1');
+    expect(component.movie?.producers).toContain('Producer 1');
   });
 
 
   it('should navigate to /movies when goBack is called', () => {
     const navigateSpy = spyOn(router, 'navigate');
-
     component.goBack();
-
     expect(navigateSpy).toHaveBeenCalledWith(['/movies']);
   });
 });
