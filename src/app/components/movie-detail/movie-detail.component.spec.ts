@@ -5,7 +5,7 @@ import { MovieDetailComponent } from './movie-detail.component';
 import { MovieService } from '../../services/movie.service';
 import { CurrencyFormatPipe } from '../../pipes/currency-format.pipe';
 import { MinutesToHoursPipe } from '../../pipes/minutes-to-hours.pipe';
-import { MovieDetail } from '../../models/moviedetail';
+import { MovieDetail } from '../../models/movie-detail.model';
 
 describe('MovieDetailComponent', () => {
   let component: MovieDetailComponent;

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MovieDetail } from '../../models/moviedetail';
+import { MovieDetail } from '../../models/movie-detail.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MovieService } from '../../services/movie.service';
 import { CurrencyFormatPipe } from '../../pipes/currency-format.pipe';

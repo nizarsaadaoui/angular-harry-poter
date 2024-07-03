@@ -1,6 +1,6 @@
 import { Component, OnInit, Signal, signal, computed } from '@angular/core';
 import { MovieService } from '../../services/movie.service';
-import { Movie } from '../../models/movie';
+import { Movie } from '../../models/movie.model';
 import { FormsModule } from '@angular/forms';
 import { CurrencyFormatPipe } from '../../pipes/currency-format.pipe';
 import { MinutesToHoursPipe } from '../../pipes/minutes-to-hours.pipe';

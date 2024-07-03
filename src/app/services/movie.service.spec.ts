@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { MovieService } from './movie.service';
-import { Movie } from '../models/movie';
-import { MovieDetail } from '../models/moviedetail';
+import { Movie } from '../models/movie.model';
+import { MovieDetail } from '../models/movie-detail.model';
 
 describe('MovieService', () => {
   let service: MovieService;
